@@ -61,3 +61,25 @@ public:
         return units[0] == units[2] && units[1] == units[3];
     }
 };
+
+class Solution {
+public:
+    bool isRobotBounded(string instructions) {
+        vector<int> units(4, 0);
+        int c_dir = 0;
+        for (auto e : instructions) {
+            if (e == 'G') {
+                units[c_dir]++;
+            } else if (e == 'L') {
+                c_dir = (c_dir - 1 + 4) % 4;
+            } else if (e == 'R') {
+                c_dir = (c_dir + 1) % 4;
+            }
+        }
+        
+        if (c_dir != 0) {
+            return true;
+        }
+        return units[0] == units[2] && units[1] == units[3];
+    }
+};
